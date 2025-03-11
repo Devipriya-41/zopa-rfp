@@ -1,9 +1,7 @@
-import './bootstrap';
-import React from 'react';
-import App from './component/app';
-import ReactDom from 'react-dom/client';
+import "./bootstrap";
+import React from "react";
+import Index from "./component/index";
+import ReactDom from "react-dom/client";
 
-const root = ReactDom.createRoot(document.getElementById('app'));
-root.render(<App />);
-
-
+const root = ReactDom.createRoot(document.getElementById("app"));
+root.render(<Index />);

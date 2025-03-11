@@ -1,6 +1,8 @@
 import React from "react";
+import logo from "../../../../public/assets/zopa-logo.svg";
 
 const PreviewDocument = ({ data }) => {
+    console.log(data?.contact?.logo, "ddadda");
     if (!data.company.name) {
         return (
             <div className="empty-preview">
@@ -12,41 +14,67 @@ const PreviewDocument = ({ data }) => {
     return (
         <div className="document-preview">
             <div className="document-header">
-                {data.logo && (
-                    <img
-                        src={URL.createObjectURL(data.logo)}
-                        alt="Company Logo"
-                        className="company-logo"
-                    />
-                )}
+                <img
+                    src={
+                        data?.contact?.logo
+                            ? URL.createObjectURL(data.contact.logo)
+                            : logo
+                    }
+                    alt="Logo Preview"
+                    className="max-w-[60px] max-h-[60px] rounded-lg shadow-md"
+                />
                 <h2>{data.requirement.projectName || "RFP Document"}</h2>
             </div>
 
             <div className="section">
                 <h3>1. Company Introduction</h3>
                 <p>
-                    {data.company.name} incorporated under Indian Companies Act,
-                    1956, having its office at {data.company.address}, herein
-                    after referred to as "Company" which expression shall unless
-                    repugnant to the context or meaning thereof and include its
-                    administrators and successors in interest of the First Part.
+                    <span className="font-bold capitalize">
+                        {data.company.name}
+                    </span>{" "}
+                    incorporated under Indian Companies Act, 1956, having its
+                    office at{" "}
+                    <span className="font-bold capitalize">
+                        {data.company.address}
+                    </span>
+                    , herein after referred to as "Company" which expression
+                    shall unless repugnant to the context or meaning thereof and
+                    include its administrators and successors in interest of the
+                    First Part.
                 </p>
-                <p>Company is in the business of {data.company.businessType}</p>
+                <p>
+                    Company is in the business of{" "}
+                    <span className="font-bold capitalize">
+                        {data.company.businessType}
+                    </span>
+                </p>
             </div>
 
             {data.requirement.projectName && (
                 <div className="section">
                     <h3>2. About the Requirement</h3>
                     <p>
-                        {data.company.name} is working{" "}
-                        {data.requirement.projectName} for the purpose of{" "}
-                        {data.requirement.purpose}. As per the{" "}
-                        {data.requirement.projectName} requirement, we are
-                        inviting the vendor to quote for the same with best
-                        matching the requirement. We have listed the requirement
-                        in the document and the vendor is expected to quote for
-                        items and also mentioned the deviations the changes if
-                        any.
+                        <span className="font-bold capitalize">
+                            {" "}
+                            {data.company.name}
+                        </span>
+                        is working{" "}
+                        <span className="font-bold capitalize">
+                            {data.requirement.projectName}
+                        </span>{" "}
+                        for the purpose of{" "}
+                        <span className="font-semibold capitalize">
+                            {data.requirement.purpose}
+                        </span>{" "}
+                        . As per the{" "}
+                        <span className="font-bold capitalize">
+                            {data.requirement.projectName}
+                        </span>{" "}
+                        requirement, we are inviting the vendor to quote for the
+                        same with best matching the requirement. We have listed
+                        the requirement in the document and the vendor is
+                        expected to quote for items and also mentioned the
+                        deviations the changes if any.
                     </p>
                 </div>
             )}
@@ -302,6 +330,114 @@ const PreviewDocument = ({ data }) => {
                     </p>
                 </div>
             )}
+
+            {/* Contact Section (Footer) */}
+            <footer className="bg-gray-100 py-6 mt-10 border-t border-gray-300 shadow-md">
+                <div className="max-w-5xl mx-auto px-6">
+                    <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">
+                        📞 Contact Information
+                    </h3>
+
+                    {data.contact.contactName ||
+                    data.contact.contactTitle ||
+                    data.contact.contactDepartment ||
+                    data.contact.contactEmail ||
+                    data.contact.contactPhone ||
+                    data.contact.contactAddress ||
+                    data.contact.contactCity ? (
+                        <div className="grid sm:grid-cols-2 gap-4 text-gray-700">
+                            {data.contact.contactName && (
+                                <p>
+                                    <strong className="text-gray-900">
+                                        👤 Contact Name:
+                                    </strong>{" "}
+                                    {data.contact.contactName}
+                                </p>
+                            )}
+                            {data.contact.contactTitle && (
+                                <p>
+                                    <strong className="text-gray-900">
+                                        🏢 Title:
+                                    </strong>{" "}
+                                    {data.contact.contactTitle}
+                                </p>
+                            )}
+                            {data.contact.contactDepartment && (
+                                <p>
+                                    <strong className="text-gray-900">
+                                        📂 Department:
+                                    </strong>{" "}
+                                    {data.contact.contactDepartment}
+                                </p>
+                            )}
+                            {data.contact.contactEmail && (
+                                <p>
+                                    <strong className="text-gray-900">
+                                        📧 Email:
+                                    </strong>{" "}
+                                    <a
+                                        href={`mailto:${data.contact.contactEmail}`}
+                                        className="text-blue-600 hover:underline"
+                                    >
+                                        {data.contact.contactEmail}
+                                    </a>
+                                </p>
+                            )}
+                            {data.contact.contactPhone && (
+                                <p>
+                                    <strong className="text-gray-900">
+                                        📞 Phone:
+                                    </strong>{" "}
+                                    <a
+                                        href={`tel:${data.contact.contactPhone}`}
+                                        className="text-blue-600 hover:underline"
+                                    >
+                                        {data.contact.contactPhone}
+                                    </a>
+                                </p>
+                            )}
+                            {(data.contact.contactAddress ||
+                                data.contact.contactCity) && (
+                                <p>
+                                    <strong className="text-gray-900">
+                                        📍 Address:
+                                    </strong>{" "}
+                                    {data.contact.contactAddress},{" "}
+                                    {data.contact.contactCity}
+                                </p>
+                            )}
+                        </div>
+                    ) : (
+                        <div className="text-center text-gray-600">
+                            <p>For more details, please contact:</p>
+                            <p className="font-semibold text-gray-800">
+                                Support Team
+                            </p>
+                            <p className="text-gray-700">
+                                📧{" "}
+                                <a
+                                    href="mailto:support@example.com"
+                                    className="text-blue-600 hover:underline"
+                                >
+                                    support@example.com
+                                </a>
+                            </p>
+                            <p className="text-gray-700">
+                                📞{" "}
+                                <a
+                                    href="tel:+1234567890"
+                                    className="text-blue-600 hover:underline"
+                                >
+                                    +123 456 7890
+                                </a>
+                            </p>
+                            <p className="text-gray-700">
+                                📍 123 Business St, City, Country
+                            </p>
+                        </div>
+                    )}
+                </div>
+            </footer>
         </div>
     );
 };

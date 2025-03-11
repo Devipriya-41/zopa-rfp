@@ -14,6 +14,7 @@ import RFPDates from "./RFP-Dates/index";
 import Preview from "./RFP-Preview/index";
 import PreviewDocument from "./Preview-Document/index";
 import "./style.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const RFPCreator = () => {
     const [activeSection, setActiveSection] = useState("company");
@@ -271,7 +272,7 @@ const RFPCreator = () => {
             </div>
 
             <div className="rfp-content">
-                <div className="form-section">
+                <div className="form-section overflow-y-auto max-h-[600px] p-4 border border-gray-300 rounded-lg bg-white shadow-md">
                     {activeSection === "company" && (
                         <CompanyIntroduction
                             data={formData.company}
@@ -399,12 +400,17 @@ const RFPCreator = () => {
                 </div>
 
                 <div className="preview-section">
-                    <h3>Live Preview</h3>
-                    <div className="preview-document">
+                    <h3 className="text-lg font-semibold text-gray-800">
+                        Live Preview
+                    </h3>
+
+                    <div className="preview-document overflow-y-auto max-h-[550px] p-4 border border-gray-300 rounded-lg bg-gray-100 shadow-md">
                         <PreviewDocument data={formData} />
                     </div>
                 </div>
             </div>
+
+            <ToastContainer />
         </div>
     );
 };

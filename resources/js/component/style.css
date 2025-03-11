@@ -100,7 +100,7 @@ body {
   flex: 1;
   padding: 30px;
   background-color: var(--light-color);
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
 .preview-section h3 {

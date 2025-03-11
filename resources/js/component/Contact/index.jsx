@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Contact = ({ data, onChange, errors }) => {
+    const [logo, setLogo] = useState(null);
     const handleChange = (e) => {
         const { name, value } = e.target;
         onChange({ ...data, [name]: value });
     };
 
+    const handleLogoChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            console.log(file, "fileeeee");
+            setLogo(file);
+            onChange({ ...data, logo: file });
+        } else {
+            setLogo(null);
+            onChange({ ...data, logo: null });
+        }
+    };
+
+    // const handleLogoChange = (e) => {
+    //     const file = e.target.files[0];
+    //     if (file) {
+    //         setLogo(file);
+    //         onChange({ ...data, logo: file });
+    //     } else {
+    //         setLogo(null);
+    //         onChange({ ...data, logo: null });
+    //     }
+    // };
     return (
         <div className="component-container">
             <h2 className="mb-2">Contact Information</h2>
@@ -17,7 +40,10 @@ const Contact = ({ data, onChange, errors }) => {
                     <div className="space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label htmlFor="contactName" className="text-sm font-medium">
+                                <label
+                                    htmlFor="contactName"
+                                    className="text-sm font-medium"
+                                >
                                     Contact Name
                                 </label>
                                 <input
@@ -29,11 +55,16 @@ const Contact = ({ data, onChange, errors }) => {
                                     className="form-control mt-1"
                                 />
                                 {errors.contactName && (
-                                    <div className="error-message">{errors.contactName}</div>
+                                    <div className="error-message">
+                                        {errors.contactName}
+                                    </div>
                                 )}
                             </div>
                             <div>
-                                <label htmlFor="contactTitle" className="text-sm font-medium">
+                                <label
+                                    htmlFor="contactTitle"
+                                    className="text-sm font-medium"
+                                >
                                     Title/Position
                                 </label>
                                 <input
@@ -45,14 +76,19 @@ const Contact = ({ data, onChange, errors }) => {
                                     className="form-control mt-1"
                                 />
                                 {errors.contactTitle && (
-                                    <div className="error-message">{errors.contactTitle}</div>
+                                    <div className="error-message">
+                                        {errors.contactTitle}
+                                    </div>
                                 )}
                             </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label htmlFor="contactEmail" className="text-sm font-medium">
+                                <label
+                                    htmlFor="contactEmail"
+                                    className="text-sm font-medium"
+                                >
                                     Email Address
                                 </label>
                                 <input
@@ -65,11 +101,16 @@ const Contact = ({ data, onChange, errors }) => {
                                     className="form-control mt-1"
                                 />
                                 {errors.contactEmail && (
-                                    <div className="error-message">{errors.contactEmail}</div>
+                                    <div className="error-message">
+                                        {errors.contactEmail}
+                                    </div>
                                 )}
                             </div>
                             <div>
-                                <label htmlFor="contactPhone" className="text-sm font-medium">
+                                <label
+                                    htmlFor="contactPhone"
+                                    className="text-sm font-medium"
+                                >
                                     Phone Number
                                 </label>
                                 <input
@@ -81,13 +122,18 @@ const Contact = ({ data, onChange, errors }) => {
                                     className="form-control mt-1"
                                 />
                                 {errors.contactPhone && (
-                                    <div className="error-message">{errors.contactPhone}</div>
+                                    <div className="error-message">
+                                        {errors.contactPhone}
+                                    </div>
                                 )}
                             </div>
                         </div>
 
                         <div>
-                            <label htmlFor="contactDepartment" className="text-sm font-medium">
+                            <label
+                                htmlFor="contactDepartment"
+                                className="text-sm font-medium"
+                            >
                                 Department
                             </label>
                             <input
@@ -99,13 +145,18 @@ const Contact = ({ data, onChange, errors }) => {
                                 className="form-control mt-1"
                             />
                             {errors.contactDepartment && (
-                                <div className="error-message">{errors.contactDepartment}</div>
+                                <div className="error-message">
+                                    {errors.contactDepartment}
+                                </div>
                             )}
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label htmlFor="contactAddress" className="text-sm font-medium">
+                                <label
+                                    htmlFor="contactAddress"
+                                    className="text-sm font-medium"
+                                >
                                     Address
                                 </label>
                                 <input
@@ -117,11 +168,16 @@ const Contact = ({ data, onChange, errors }) => {
                                     className="form-control mt-1"
                                 />
                                 {errors.contactAddress && (
-                                    <div className="error-message">{errors.contactAddress}</div>
+                                    <div className="error-message">
+                                        {errors.contactAddress}
+                                    </div>
                                 )}
                             </div>
                             <div>
-                                <label htmlFor="contactCity" className="text-sm font-medium">
+                                <label
+                                    htmlFor="contactCity"
+                                    className="text-sm font-medium"
+                                >
                                     City, State, ZIP
                                 </label>
                                 <input
@@ -133,7 +189,78 @@ const Contact = ({ data, onChange, errors }) => {
                                     className="form-control mt-1"
                                 />
                                 {errors.contactCity && (
-                                    <div className="error-message">{errors.contactCity}</div>
+                                    <div className="error-message">
+                                        {errors.contactCity}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                         
+                            <div>
+                                <label
+                                    htmlFor="logoUpload"
+                                    className="text-sm font-medium"
+                                >
+                                    Upload Logo
+                                </label>
+                                <input
+                                    type="file"
+                                    id="logoUpload"
+                                    accept="image/*"
+                                    onChange={handleLogoChange}
+                                    className="form-control mt-1"
+                                />
+                                {logo && (
+                                    <div>
+                                        <p>Selected Logo: {logo.name}</p>
+                                        <img
+                                            src={URL.createObjectURL(logo)}
+                                            alt="Logo Preview"
+                                            style={{
+                                                maxWidth: "100px",
+                                                maxHeight: "100px",
+                                            }}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        </div> */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label
+                                    htmlFor="logoUpload"
+                                    className="text-sm font-medium"
+                                >
+                                    Upload Logo
+                                </label>
+                                <input
+                                    type="file"
+                                    id="logoUpload"
+                                    accept="image/*"
+                                    onChange={handleLogoChange}
+                                    className="form-control mt-1"
+                                />
+                                <p className="text-xs text-gray-500 mt-1">
+                                    Allowed formats: JPG, JPEG, PNG
+                                </p>
+                                {logo && (
+                                    <div>
+                                        <p>Selected Logo: {logo.name}</p>
+                                        {console.log(
+                                            URL.createObjectURL(logo),
+                                            "urssfl"
+                                        )}
+                                        <img
+                                            src={URL.createObjectURL(logo)}
+                                            alt="Logo Preview"
+                                            style={{
+                                                maxWidth: "100px",
+                                                maxHeight: "100px",
+                                            }}
+                                        />
+                                    </div>
                                 )}
                             </div>
                         </div>
@@ -144,7 +271,9 @@ const Contact = ({ data, onChange, errors }) => {
                 <button
                     className="btn btn-secondary"
                     onClick={() =>
-                        document.querySelector(".sidebar-nav li:nth-child(9)").click()
+                        document
+                            .querySelector(".sidebar-nav li:nth-child(9)")
+                            .click()
                     }
                 >
                     Previous: Documents to Share
@@ -152,7 +281,9 @@ const Contact = ({ data, onChange, errors }) => {
                 <button
                     className="btn btn-primary"
                     onClick={() =>
-                        document.querySelector(".sidebar-nav li:nth-child(11)").click()
+                        document
+                            .querySelector(".sidebar-nav li:nth-child(11)")
+                            .click()
                     }
                 >
                     Next: Add Vendors

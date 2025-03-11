@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import * as XLSX from "xlsx";
+import { FaTrash, FaUpload, FaFileDownload } from "react-icons/fa";
 
 const BOQ = ({ data, onChange, errors }) => {
     const [item, setItem] = useState({
@@ -124,6 +125,61 @@ const BOQ = ({ data, onChange, errors }) => {
             fileInputRef.current.value = "";
         }
     };
+
+    // Function to generate and download a sample Excel file
+    const downloadSampleExcel = () => {
+        // Create a new workbook
+        const wb = XLSX.utils.book_new();
+
+        // Define the headers
+        const headers = [
+            "Description",
+            "UOM",
+            "Qty",
+            "Target Price",
+            "Specification",
+            "Remarks",
+        ];
+
+        // Add some sample data
+        const data = [
+            headers,
+            [
+                "Laptop Computer",
+                "Each",
+                "10",
+                "1000",
+                "Core i7, 16GB RAM",
+                "Delivery within 2 weeks",
+            ],
+            [
+                "Office Chair",
+                "Each",
+                "20",
+                "150",
+                "Ergonomic design",
+                "Blue color preferred",
+            ],
+            [
+                "Printer Ink",
+                "Box",
+                "5",
+                "50",
+                "Compatible with HP LaserJet",
+                "",
+            ],
+        ];
+
+        // Create a worksheet
+        const ws = XLSX.utils.aoa_to_sheet(data);
+
+        // Add the worksheet to the workbook
+        XLSX.utils.book_append_sheet(wb, ws, "BOQ Template");
+
+        // Generate the Excel file and trigger download
+        XLSX.writeFile(wb, "boq-template.xlsx");
+    };
+
     return (
         <div className="component-container">
             <h2>4. BOQ/BOM (Bill of Quantities)</h2>
@@ -275,76 +331,69 @@ const BOQ = ({ data, onChange, errors }) => {
                 </div>
             </div>
 
-            {/* <div className="bulk-upload-section mb-4">
-                <h4>Bulk Upload</h4>
-                <p>Upload a CSV or Excel file with your items list.</p>
-                <div className="custom-file mb-3 btn btn-primary">
+            <div className="bulk-upload-section mb-6 p-6 bg-white shadow-lg rounded-lg border border-gray-200">
+                {/* Header */}
+                <h4 className="text-xl font-semibold text-gray-800">
+                    Bulk Upload
+                </h4>
+                <p className="text-sm text-gray-600 mb-4">
+                    Upload a <strong>CSV</strong> or <strong>Excel</strong> file
+                    with your items list.
+                </p>
+
+                {/* Upload Section */}
+                <div className="flex flex-col items-center p-5 border-2 border-dashed border-gray-400 rounded-lg bg-gray-50 hover:bg-gray-100 transition-all duration-200">
+                    <label
+                        htmlFor="bulkUpload"
+                        className="cursor-pointer flex items-center gap-2 px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-md transition-all duration-200"
+                    >
+                        <FaUpload className="w-5 h-5" />
+                        {uploadedFile ? uploadedFile : "Choose File"}
+                    </label>
+
                     <input
                         type="file"
-                        className="custom-file-input"
                         id="bulkUpload"
                         accept=".csv,.xlsx"
                         onChange={handleBulkUpload}
-                        placeholder="Upload file"
+                        style={{ display: "none" }}
+                        ref={fileInputRef}
                     />
-                    <label className="custom-file-label" htmlFor="bulkUpload">
-                        {uploadedFile ? uploadedFile : "Choose file"}
-                    </label>
+
+                    <p className="text-xs text-gray-500 mt-2">
+                        Accepted formats: <strong>.csv, .xlsx</strong>
+                    </p>
                 </div>
+
+                {/* Remove File Button */}
                 {uploadedFile && (
                     <button
-                        className="btn btn-danger btn-sm"
+                        className="mt-3 flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg shadow-md transition-all duration-200"
                         onClick={removeUploadedFile}
                     >
-                        <i className="fas fa-trash"></i> Remove File
+                        <FaTrash className="w-5 h-5" /> Remove File
                     </button>
                 )}
-                <div>
-                    <small className="form-text text-muted">
-                        Download a{" "}
+
+                {/* Download Template Section */}
+                <div className="mt-6 p-4 bg-gray-100 rounded-lg shadow-md border border-gray-300">
+                    <p className="text-sm text-gray-700">
+                        Download a sample template file to see the required
+                        format.
+                    </p>
+                    <div className="mt-2 flex justify-center">
                         <a
-                            href="/sample-boq.xlsx" // Path to the sample file in the public folder
-                            download="sample-boq.xlsx"
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                downloadSampleExcel();
+                            }}
+                            className="inline-flex items-center px-5 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg shadow-md transition-all duration-200"
                         >
-                            template file
-                        </a>{" "}
-                        to see the required format.
-                    </small>
-                </div>
-            </div> */}
-            <div className="bulk-upload-section mb-4">
-                <h4>Bulk Upload</h4>
-                <p>Upload a CSV or Excel file with your items list.</p>
-                <div className="custom-file mb-3">
-                    <label className="btn btn-primary">
-                        <input
-                            type="file"
-                            className="custom-file-input"
-                            id="bulkUpload"
-                            accept=".csv,.xlsx"
-                            onChange={handleBulkUpload}
-                            style={{ display: "none" }}
-                            ref={fileInputRef}
-                        />
-                        {uploadedFile ? uploadedFile : "Choose file"}
-                    </label>
-                </div>
-                {uploadedFile && (
-                    <button
-                        className="btn btn-danger btn-sm"
-                        onClick={removeUploadedFile}
-                    >
-                        <i className="fas fa-trash"></i> Remove File
-                    </button>
-                )}
-                <div>
-                    <small className="form-text text-muted">
-                        Download a{" "}
-                        <a href="/sample-boq.xlsx" download="sample-boq.xlsx">
-                            template file
-                        </a>{" "}
-                        to see the required format.
-                    </small>
+                            <FaFileDownload className="w-5 h-5 mr-2" /> Download
+                            Template
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -374,11 +423,11 @@ const BOQ = ({ data, onChange, errors }) => {
                                     <td>{item.remarks}</td>
                                     <td>
                                         <button
-                                            className="btn btn-sm btn-danger"
+                                            className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow-md transition-all duration-200 flex items-center gap-2"
                                             onClick={() => removeItem(index)}
                                             title="Remove Item"
                                         >
-                                            <i className="fas fa-trash"></i>
+                                            <FaTrash className="w-4 h-4" />
                                         </button>
                                     </td>
                                 </tr>
