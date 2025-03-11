@@ -1,18 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import {
-    PDFDownloadLink,
-    Document,
-    Page,
-    Text,
-    View,
-    StyleSheet,
-    Image,
-} from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RFPDocument from "./rfp_documents";
+import TermsAndConditionsPopup from "./terms_condition";
 
 const Preview = ({ data, onSubmit, isSubmitting }) => {
+    // console.log(isSubmitting, "isSubmitting");
     const [sendTo, setSendTo] = useState("");
     const [sendMethod, setSendMethod] = useState("email");
     const [emailError, setEmailError] = useState("");
@@ -20,6 +14,8 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
     const [showDownload, setShowDownload] = useState(null);
     const [incompleteSections, setIncompleteSections] = useState([]);
     const [formComplete, setFormComplete] = useState(false);
+    const [showTermsPopup, setShowTermsPopup] = useState(false);
+    const [termsAccepted, setTermsAccepted] = useState(false);
     const safeDataRef = useRef(null);
 
     const prepareLogoForPdf = useCallback((logoFile) => {
@@ -31,7 +27,7 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
 
             const reader = new FileReader();
             reader.onloadend = () => {
-                resolve(reader.result); // Base64 string
+                resolve(reader.result);
             };
             reader.readAsDataURL(logoFile);
         });
@@ -68,6 +64,32 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
         return re.test(email);
     }, []);
 
+    // const handleSendClick = useCallback(() => {
+    //     if (!formComplete) {
+    //         toast.error(
+    //             "Please fill in all required sections before submitting."
+    //         );
+    //         return;
+    //     }
+
+    //     if (sendMethod === "email") {
+    //         if (!sendTo) {
+    //             setEmailError("Email is required");
+    //             return;
+    //         }
+
+    //         if (!validateEmail(sendTo)) {
+    //             setEmailError("Please enter a valid email address");
+    //             return;
+    //         }
+
+    //         setEmailError("");
+    //     }
+
+    //     // Show terms and conditions popup instead of submitting immediately
+    //     setShowTermsPopup(true);
+    // }, [formComplete, sendMethod, sendTo, validateEmail]);
+
     const handleSendClick = useCallback(() => {
         if (!formComplete) {
             toast.error(
@@ -90,15 +112,37 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
             setEmailError("");
         }
 
+        setShowTermsPopup(true);
+    }, [formComplete, sendMethod, sendTo, validateEmail]);
+
+    const handleConfirmSubmit = () => {
+        if (!termsAccepted) {
+            toast.error("Please accept the terms and conditions to proceed");
+            return;
+        }
+
+        // Ensure sendTo and sendMethod have values
+        if (!sendTo || !sendMethod) {
+            toast.error("Please select a valid recipient and sending method.");
+            return;
+        }
+
+        // Close the popup
+        setShowTermsPopup(false);
+
+        // Submit the form
         onSubmit({
             ...data,
             sendTo,
             sendMethod,
         });
-    }, [formComplete, sendMethod, sendTo, validateEmail, onSubmit, data]);
+
+        // Show success toast
+        toast.success("RFP submitted successfully!");
+    };
 
     const getIncompleteSections = useCallback(() => {
-        const safeData = safeDataRef.current; // Access the latest safeData
+        const safeData = safeDataRef.current;
 
         const requiredSections = [
             { name: "1. Company Introduction", value: safeData.company?.name },
@@ -189,7 +233,104 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
         setFormComplete(incomplete.length === 0);
     }, [getIncompleteSections]);
 
-    console.log(incompleteSections, "incompleteSections");
+    // Terms and Conditions Popup Component
+    // const TermsAndConditionsPopup = () => {
+    //     if (!showTermsPopup) return null;
+
+    //     return (
+    //         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    //             <div className="bg-white rounded-lg p-6 w-11/12 max-w-2xl max-h-[90vh] overflow-y-auto">
+    //                 <h2 className="text-xl font-bold mb-4">
+    //                     Terms and Conditions
+    //                 </h2>
+    //                 <div className="mb-4 border border-gray-200 p-4 rounded-lg bg-gray-50 h-64 overflow-y-auto">
+    //                     <h3 className="font-semibold mb-2">1. General Terms</h3>
+    //                     <p className="mb-3">
+    //                         By submitting this RFP, you agree that all
+    //                         information provided is accurate and complete. The
+    //                         RFP will be sent to the specified recipient(s) and
+    //                         you take responsibility for ensuring the correct
+    //                         contact details have been provided.
+    //                     </p>
+
+    //                     <h3 className="font-semibold mb-2">
+    //                         2. Confidentiality
+    //                     </h3>
+    //                     <p className="mb-3">
+    //                         All information contained in this RFP is
+    //                         confidential and proprietary. Recipients are
+    //                         obligated to maintain confidentiality and use the
+    //                         information solely for the purpose of responding to
+    //                         this RFP.
+    //                     </p>
+
+    //                     <h3 className="font-semibold mb-2">
+    //                         3. Intellectual Property
+    //                     </h3>
+    //                     <p className="mb-3">
+    //                         All intellectual property rights associated with
+    //                         this RFP and its contents remain with the issuing
+    //                         organization. No rights are transferred to
+    //                         recipients except for the purpose of preparing a
+    //                         response.
+    //                     </p>
+
+    //                     <h3 className="font-semibold mb-2">4. No Obligation</h3>
+    //                     <p className="mb-3">
+    //                         Issuance of this RFP does not obligate the
+    //                         organization to award a contract or pay any costs
+    //                         incurred in the preparation of a proposal in
+    //                         response to this request.
+    //                     </p>
+
+    //                     <h3 className="font-semibold mb-2">
+    //                         5. Accuracy of Information
+    //                     </h3>
+    //                     <p>
+    //                         While efforts have been made to ensure the accuracy
+    //                         of information in this RFP, the organization makes
+    //                         no warranty regarding the accuracy or completeness
+    //                         of the information provided.
+    //                     </p>
+    //                 </div>
+
+    //                 <div className="mb-4">
+    //                     <label className="flex items-center">
+    //                         <input
+    //                             type="checkbox"
+    //                             checked={termsAccepted}
+    //                             onChange={() =>
+    //                                 setTermsAccepted(!termsAccepted)
+    //                             }
+    //                             className="mr-2 h-5 w-5"
+    //                         />
+    //                         <span>I accept the terms and conditions</span>
+    //                     </label>
+    //                 </div>
+
+    //                 <div className="flex justify-end space-x-3">
+    //                     <button
+    //                         className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100 transition-colors"
+    //                         onClick={() => setShowTermsPopup(false)}
+    //                     >
+    //                         Cancel
+    //                     </button>
+    //                     <button
+    //                         className={`px-4 py-2 rounded-md text-white transition-colors ${
+    //                             termsAccepted
+    //                                 ? "bg-blue-500 hover:bg-blue-600"
+    //                                 : "bg-gray-400 cursor-not-allowed"
+    //                         }`}
+    //                         onClick={handleConfirmSubmit}
+    //                         disabled={!termsAccepted}
+    //                     >
+    //                         Confirm & Submit
+    //                     </button>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     );
+    // };
 
     return (
         <div className="component-container">
@@ -202,7 +343,6 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
             {!formComplete && (
                 <div className="p-4 border border-yellow-400 bg-yellow-100 rounded-lg shadow-md mb-4">
                     <div className="flex items-center mb-2">
-                        {/* <FontAwesomeIcon icon={faExclamationTriangle} className="text-yellow-600 mr-2" /> */}
                         <h2 className="text-yellow-700 font-semibold text-lg">
                             Incomplete Sections
                         </h2>
@@ -229,7 +369,6 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
             <div className="card mt-4">
                 <div className="card-body">
                     <div className="form-group">
-                        {/* <label>Delivery Method</label>   */}
                         <div className="send-method-options">
                             <div>
                                 <p className="mb-2">
@@ -237,10 +376,10 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
                                 </p>
                                 <div className="flex space-x-2 mb-2">
                                     <button
-                                        className="hover:bg-blue-600 hover:text-white  border border-blue-300 text-black font-semibold px-4 py-2 rounded"
+                                        className="hover:bg-blue-600 hover:text-white border border-blue-300 text-black font-semibold px-4 py-2 rounded"
                                         onClick={() => {
                                             setShowDownload(true);
-                                            setSendMethod("download");
+                                            // setSendMethod("download");
                                         }}
                                     >
                                         Yes
@@ -254,7 +393,7 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
                                 </div>
 
                                 {showDownload && (
-                                    <div className="mt-5  download-pdf-btn">
+                                    <div className="mt-5 download-pdf-btn">
                                         <PDFDownloadLink
                                             document={
                                                 <RFPDocument
@@ -280,7 +419,6 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
                         </div>
                     </div>
 
-                    {/* {sendMethod === "email" && ( */}
                     <div className="form-group">
                         <label htmlFor="sendTo">Email Address</label>
                         <input
@@ -334,6 +472,15 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
                     </button>
                 )}
             </div>
+
+            {/* Terms and Conditions Popup */}
+            <TermsAndConditionsPopup
+                showTermsPopup={showTermsPopup}
+                setShowTermsPopup={setShowTermsPopup}
+                termsAccepted={termsAccepted}
+                setTermsAccepted={setTermsAccepted}
+                handleConfirmSubmit={handleConfirmSubmit}
+            />
         </div>
     );
 };

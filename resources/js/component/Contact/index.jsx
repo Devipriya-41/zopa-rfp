@@ -10,7 +10,7 @@ const Contact = ({ data, onChange, errors }) => {
     const handleLogoChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            console.log(file, "fileeeee");
+            // console.log(file, "fileeeee");
             setLogo(file);
             onChange({ ...data, logo: file });
         } else {
@@ -248,10 +248,7 @@ const Contact = ({ data, onChange, errors }) => {
                                 {logo && (
                                     <div>
                                         <p>Selected Logo: {logo.name}</p>
-                                        {console.log(
-                                            URL.createObjectURL(logo),
-                                            "urssfl"
-                                        )}
+
                                         <img
                                             src={URL.createObjectURL(logo)}
                                             alt="Logo Preview"

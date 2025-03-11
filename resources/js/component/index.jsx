@@ -86,7 +86,7 @@ const RFPCreator = () => {
         });
     };
 
-    console.log(formData, "formData");
+    // console.log(formData, "formData");
 
     const validateForm = () => {
         const newErrors = {};
@@ -149,7 +149,7 @@ const RFPCreator = () => {
                 setIsSubmitting(false);
             }
         } else {
-            alert("Please fix the errors before submitting.");
+            // alert("Please fix the errors before submitting.");
         }
     };
 

@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React from "react";
 import logo from "../../../../public/assets/zopa-logo.jpg";
 import {
-    PDFDownloadLink,
     Document,
     Page,
     Text,
@@ -9,14 +8,7 @@ import {
     StyleSheet,
     Image,
 } from "@react-pdf/renderer";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { Font } from "@react-pdf/renderer";
-
-// Font.register({
-//     family: "Noto Emoji",
-//     src: "https://fonts.gstatic.com/s/notoemoji/v21/SmcjsF1UoJzK5F54AEUQz4UKj4iOk0TsTWo.woff2",
-// });
 
 const styles = StyleSheet.create({
     page: {
@@ -345,7 +337,7 @@ const RFPDocument = ({ data, logoBase64 }) => (
             )}
 
             {/* Financial Information */}
-            {data.financials?.length > 0 && (
+            {data.financials && (
                 <View style={styles.section}>
                     <Text style={styles.subheader}>
                         6. Financial Information

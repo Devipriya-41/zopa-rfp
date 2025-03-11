@@ -19,7 +19,7 @@ const RFPDates = ({ data, onChange, errors }) => {
         Set the start and end dates for your RFP. The quote link will be valid for vendors only until the end date.
       </p>
        */}
-            <div className="alert alert-info text-red-500 mb-2">
+            <div className="alert alert-info  mb-2">
                 <i className="fas fa-info-circle "></i> Quote link will be valid
                 for vendors only until the end date.
             </div>
