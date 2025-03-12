@@ -14,20 +14,13 @@ const RFPDates = ({ data, onChange, errors }) => {
 
     return (
         <div className="component-container">
-            <h2>12. RFP Dates</h2>
-            {/* <p className="section-description">
-        Set the start and end dates for your RFP. The quote link will be valid for vendors only until the end date.
-      </p>
-       */}
-            <div className="alert alert-info  mb-2">
-                <i className="fas fa-info-circle "></i> Quote link will be valid
-                for vendors only until the end date.
-            </div>
+            <h2 className="font-bold mb-2">12. RFP Dates</h2>
+            <p className="section-description my-2 pb-2">
+                Set the start and end dates for your RFP. The quote link will be
+                valid for vendors only until the end date.
+            </p>
 
             <div className="card">
-                {/* <div className="card-header">
-                    <h4>RFP Timeline</h4>
-                </div> */}
                 <div className="card-body">
                     <div className="form-group">
                         <label htmlFor="startDate">
@@ -73,7 +66,7 @@ const RFPDates = ({ data, onChange, errors }) => {
                         )}
                     </div>
 
-                    {data.evaluationEnabled && (
+                    {/* {data.evaluationEnabled && (
                         <>
                             <div className="form-group">
                                 <label htmlFor="evaluationStartDate">
@@ -112,9 +105,9 @@ const RFPDates = ({ data, onChange, errors }) => {
                                 />
                             </div>
                         </>
-                    )}
+                    )} */}
 
-                    <div className="form-check mt-3">
+                    {/* <div className="form-check mt-3">
                         <input
                             type="checkbox"
                             className="form-check-input"
@@ -134,21 +127,23 @@ const RFPDates = ({ data, onChange, errors }) => {
                         >
                             Enable evaluation period
                         </label>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
             {/* Preview of dates in timeline format */}
             {(data.startDate || data.endDate) && (
                 <div className="timeline-preview mt-4">
-                    <h4>Timeline Preview</h4>
+                    <h4 className="font-medium my-2 text-lg">
+                        Timeline Preview
+                    </h4>
                     <div className="timeline">
                         {data.startDate && (
                             <div className="timeline-item">
                                 <div className="timeline-point"></div>
-                                <div className="timeline-content">
-                                    <h5>RFP Start</h5>
-                                    <p>
+                                <div className="timeline-content flex  flex-row">
+                                    <h5>RFP Start : </h5>
+                                    <p className="ms-3 font-medium">
                                         {new Date(
                                             data.startDate
                                         ).toLocaleDateString()}
@@ -158,17 +153,24 @@ const RFPDates = ({ data, onChange, errors }) => {
                         )}
 
                         {data.endDate && (
-                            <div className="timeline-item">
+                            <div className="timeline-item mt-2">
                                 <div className="timeline-point"></div>
-                                <div className="timeline-content">
-                                    <h5>RFP End</h5>
-                                    <p>
+                                <div className="timeline-content flex  flex-row">
+                                    <h5>RFP End &nbsp;:</h5>
+                                    <p className="ms-3 font-medium">
                                         {new Date(
                                             data.endDate
                                         ).toLocaleDateString()}
                                     </p>
                                 </div>
                             </div>
+                        )}
+
+                        {(data.startDate || data.endDate) && (
+                            <p className="italic mt-1 text-sm">
+                                Quote link will be valid for vendor only till
+                                end date
+                            </p>
                         )}
 
                         {data.evaluationEnabled && data.evaluationStartDate && (
@@ -204,7 +206,7 @@ const RFPDates = ({ data, onChange, errors }) => {
 
             <div className="btn-group">
                 <button
-                    className="btn btn-secondary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(11)")
@@ -214,7 +216,7 @@ const RFPDates = ({ data, onChange, errors }) => {
                     Previous: Add Vendors
                 </button>
                 <button
-                    className="btn btn-primary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(13)")

@@ -7,11 +7,11 @@ const GeneralTerms = ({ data, onChange, errors }) => {
 
     return (
         <div className="component-container">
-            <h2 className="mb-2">General Terms & Conditions</h2>
+            <h2 className="font-bold mb-2">7. General Terms & Conditions</h2>
             <div className="card">
-                <div className="card-header font-bold mb-3">
+                {/* <div className="card-header font-bold mb-3">
                     <h4>Specify General Terms</h4>
-                </div>
+                </div> */}
                 <div className="card-body">
                     <textarea
                         value={data.generalTerms || ""}
@@ -45,7 +45,7 @@ const GeneralTerms = ({ data, onChange, errors }) => {
             </div>
             <div className="btn-group">
                 <button
-                    className="btn btn-secondary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(6)")
@@ -55,7 +55,7 @@ const GeneralTerms = ({ data, onChange, errors }) => {
                     Previous: Financials
                 </button>
                 <button
-                    className="btn btn-primary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(8)")

@@ -10,7 +10,6 @@ const Contact = ({ data, onChange, errors }) => {
     const handleLogoChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            // console.log(file, "fileeeee");
             setLogo(file);
             onChange({ ...data, logo: file });
         } else {
@@ -18,24 +17,13 @@ const Contact = ({ data, onChange, errors }) => {
             onChange({ ...data, logo: null });
         }
     };
-
-    // const handleLogoChange = (e) => {
-    //     const file = e.target.files[0];
-    //     if (file) {
-    //         setLogo(file);
-    //         onChange({ ...data, logo: file });
-    //     } else {
-    //         setLogo(null);
-    //         onChange({ ...data, logo: null });
-    //     }
-    // };
     return (
         <div className="component-container">
-            <h2 className="mb-2">Contact Information</h2>
+            <h2 className="font-bold mb-2">10. Contact Information</h2>
             <div className="card">
-                <div className="card-header font-bold mb-3">
+                {/* <div className="card-header font-bold mb-3">
                     <h4>Primary Contact Details</h4>
-                </div>
+                </div> */}
                 <div className="card-body">
                     <div className="space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -266,7 +254,7 @@ const Contact = ({ data, onChange, errors }) => {
             </div>
             <div className="btn-group">
                 <button
-                    className="btn btn-secondary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(9)")
@@ -276,7 +264,7 @@ const Contact = ({ data, onChange, errors }) => {
                     Previous: Documents to Share
                 </button>
                 <button
-                    className="btn btn-primary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(11)")

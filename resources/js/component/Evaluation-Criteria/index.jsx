@@ -29,13 +29,9 @@ const EvaluationCriteria = ({ data, onChange, errors }) => {
 
     return (
         <div className="component-container">
-            <h2 className="mb-2">5. Evaluation Criteria</h2>
-            {/* <p className="section-description">
-        Select the criteria that will be used to evaluate vendor responses. These criteria will help you identify the best vendor for your requirements.
-      </p> */}
-
+            <h2 className="font-bold mb-2">5. Evaluation Criteria</h2>
             <div className="card ">
-                <div className="card-header font-bold mb-3">
+                <div className="card-header font-medium mb-3">
                     <h4>Select Evaluation Criteria</h4>
                 </div>
                 <div className="card-body">
@@ -62,7 +58,7 @@ const EvaluationCriteria = ({ data, onChange, errors }) => {
                     )}
 
                     <div className="selected-criteria mt-4">
-                        <h5>Selected Criteria:</h5>
+                        <h5 className="font-medium">Selected Criteria:</h5>
                         {data.length === 0 ? (
                             <p className="text-muted">
                                 No criteria selected yet
@@ -107,7 +103,7 @@ const EvaluationCriteria = ({ data, onChange, errors }) => {
 
             <div className="btn-group">
                 <button
-                    className="btn btn-secondary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(4)")
@@ -117,7 +113,7 @@ const EvaluationCriteria = ({ data, onChange, errors }) => {
                     Previous: BOQ/BOM
                 </button>
                 <button
-                    className="btn btn-primary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(6)")

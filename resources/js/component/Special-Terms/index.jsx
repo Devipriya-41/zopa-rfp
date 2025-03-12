@@ -7,11 +7,11 @@ const SpecialTerms = ({ data, onChange, errors }) => {
 
     return (
         <div className="component-container">
-            <h2 className="mb-2">Special Terms & Conditions</h2>
+            <h2 className="font-bold mb-2">8. Special Terms & Conditions</h2>
             <div className="card">
-                <div className="card-header font-bold mb-3">
+                {/* <div className="card-header font-bold mb-3">
                     <h4>Specify Special Terms</h4>
-                </div>
+                </div> */}
                 <div className="card-body">
                     <textarea
                         value={data.specialTerms || ""}
@@ -46,7 +46,7 @@ const SpecialTerms = ({ data, onChange, errors }) => {
             </div>
             <div className="btn-group">
                 <button
-                    className="btn btn-secondary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(7)")
@@ -56,7 +56,7 @@ const SpecialTerms = ({ data, onChange, errors }) => {
                     Previous: General Terms
                 </button>
                 <button
-                    className="btn btn-primary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(9)")

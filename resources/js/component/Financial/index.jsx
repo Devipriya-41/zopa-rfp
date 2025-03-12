@@ -36,11 +36,11 @@ const Financials = ({ data, onChange, errors }) => {
 
     return (
         <div className="component-container">
-            <h2 className="mb-2">6. Financial Information</h2>
+            <h2 className="font-bold mb-2">6. Financial Information</h2>
 
             <div className="card">
-                <div className="card-header font-bold mb-3">
-                    <h4>Enter Financial Details</h4>
+                <div className="card-header font-medium mb-3">
+                    <h4 className="">Enter Financial Details</h4>
                 </div>
                 <div className="card-body">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -240,7 +240,7 @@ const Financials = ({ data, onChange, errors }) => {
 
             <div className="btn-group">
                 <button
-                    className="btn btn-secondary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(5)")
@@ -250,7 +250,7 @@ const Financials = ({ data, onChange, errors }) => {
                     Previous: Evaluation Criteria
                 </button>
                 <button
-                    className="btn btn-primary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(7)")

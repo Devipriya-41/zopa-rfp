@@ -61,9 +61,9 @@ const DocumentsToShare = ({ data, onChange, errors }) => {
 
     return (
         <div className="component-container">
-            <h2 className="mb-2">Documents to Share</h2>
+            <h2 className="font-bold mb-2">9. Documents to Share</h2>
             <div className="card">
-                <div className="card-header font-bold mb-3">
+                <div className="card-header font-medium mb-2">
                     <h4>Add Documents</h4>
                 </div>
                 <div className="card-body">
@@ -112,7 +112,7 @@ const DocumentsToShare = ({ data, onChange, errors }) => {
                             <button
                                 type="button"
                                 onClick={handleAddDocument}
-                                className="btn btn-primary"
+                                className="button"
                             >
                                 <span>Add</span>
                             </button>
@@ -151,7 +151,7 @@ const DocumentsToShare = ({ data, onChange, errors }) => {
 
             <div className="btn-group">
                 <button
-                    className="btn btn-secondary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(8)")
@@ -161,7 +161,7 @@ const DocumentsToShare = ({ data, onChange, errors }) => {
                     Previous: Special Terms
                 </button>
                 <button
-                    className="btn btn-primary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(10)")

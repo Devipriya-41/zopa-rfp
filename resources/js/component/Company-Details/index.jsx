@@ -102,7 +102,7 @@ const CompanyIntroduction = ({ data, onChange, errors }) => {
             <div className="btn-group">
                 <div></div> {/* Empty div for flex spacing */}
                 <button
-                    className="btn btn-primary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(2)")

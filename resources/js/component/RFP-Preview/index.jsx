@@ -440,7 +440,7 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
 
             <div className="btn-group mt-4">
                 <button
-                    className="btn btn-secondary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(12)")

@@ -11,7 +11,7 @@ const AboutRequirement = ({ data, onChange, errors }) => {
 
     return (
         <div className="component-container">
-            <h2>2. About the Requirement</h2>
+            <h2 className="font-bold mb-2">2. About the Requirement</h2>
             {/* <p className="section-description">
         Provide details about your project requirements that vendors need to understand.
       </p> */}
@@ -54,7 +54,7 @@ const AboutRequirement = ({ data, onChange, errors }) => {
                 )}
             </div>
 
-            <div className="preview-output">
+            {/* <div className="preview-output">
                 <h4>Preview:</h4>
                 <div className="preview-text">
                     {data.companyName && data.projectName && data.purpose && (
@@ -71,11 +71,11 @@ const AboutRequirement = ({ data, onChange, errors }) => {
                         </p>
                     )}
                 </div>
-            </div>
+            </div> */}
 
             <div className="btn-group">
                 <button
-                    className="btn btn-secondary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(1)")
@@ -85,7 +85,7 @@ const AboutRequirement = ({ data, onChange, errors }) => {
                     Previous: Company Introduction
                 </button>
                 <button
-                    className="btn btn-primary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(3)")

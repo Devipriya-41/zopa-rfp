@@ -38,11 +38,8 @@ const VendorSelection = ({ data, onChange, errors }) => {
 
     return (
         <div className="component-container">
-            <h2 className="mb-2">Vendor Selection Process</h2>
+            <h2 className="font-bold mb-2">11. Vendor Selection Process</h2>
             <div className="card">
-                <div className="card-header font-bold mb-3">
-                    <h4>Vendor Selection Details</h4>
-                </div>
                 <div className="card-body">
                     <div className="space-y-4">
                         <div>
@@ -158,7 +155,7 @@ const VendorSelection = ({ data, onChange, errors }) => {
             </div>
             <div className="btn-group">
                 <button
-                    className="btn btn-secondary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(10)")
@@ -168,7 +165,7 @@ const VendorSelection = ({ data, onChange, errors }) => {
                     Previous: Contact Information
                 </button>
                 <button
-                    className="btn btn-primary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(12)")

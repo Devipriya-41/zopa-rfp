@@ -15,6 +15,8 @@ import Preview from "./RFP-Preview/index";
 import PreviewDocument from "./Preview-Document/index";
 import "./style.css";
 import { ToastContainer, toast } from "react-toastify";
+import logo from "../../../public/assets/zopa-logo-light.svg";
+// import Image from "next/image";
 
 const RFPCreator = () => {
     const [activeSection, setActiveSection] = useState("company");
@@ -86,11 +88,8 @@ const RFPCreator = () => {
         });
     };
 
-    // console.log(formData, "formData");
-
     const validateForm = () => {
         const newErrors = {};
-
         // Company validation
         if (!formData.company.name)
             newErrors.companyName = "Company name is required";
@@ -160,8 +159,9 @@ const RFPCreator = () => {
     return (
         <div className="rfp-creator-container">
             <div className="rfp-sidebar">
-                <div className="logo-container">
-                    <h2>RFP Creator</h2>
+                <div className="logo-container mt-1 ">
+                    <img src={logo} alt="Logo" width={100} height={100} />
+                    {/* <h2>RFP Creator</h2> */}
                 </div>
                 <nav className="sidebar-nav">
                     <ul>
@@ -272,7 +272,7 @@ const RFPCreator = () => {
             </div>
 
             <div className="rfp-content">
-                <div className="form-section overflow-y-auto max-h-[600px] p-4 border border-gray-300 rounded-lg bg-white shadow-md">
+                <div className="form-section overflow-y-auto max-h-[640px] p-4 border border-gray-300 rounded-lg bg-white shadow-md">
                     {activeSection === "company" && (
                         <CompanyIntroduction
                             data={formData.company}
@@ -400,9 +400,7 @@ const RFPCreator = () => {
                 </div>
 
                 <div className="preview-section">
-                    <h3 className="text-lg font-semibold text-gray-800">
-                        Live Preview
-                    </h3>
+                    <h3 className="text-lg font-semibold ">Live Preview</h3>
 
                     <div className="preview-document overflow-y-auto max-h-[550px] p-4 border border-gray-300 rounded-lg bg-gray-100 shadow-md">
                         <PreviewDocument data={formData} />

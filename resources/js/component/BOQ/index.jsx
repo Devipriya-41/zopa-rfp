@@ -130,8 +130,6 @@ const BOQ = ({ data, onChange, errors }) => {
     const downloadSampleExcel = () => {
         // Create a new workbook
         const wb = XLSX.utils.book_new();
-
-        // Define the headers
         const headers = [
             "Description",
             "UOM",
@@ -172,24 +170,20 @@ const BOQ = ({ data, onChange, errors }) => {
 
         // Create a worksheet
         const ws = XLSX.utils.aoa_to_sheet(data);
-
-        // Add the worksheet to the workbook
         XLSX.utils.book_append_sheet(wb, ws, "BOQ Template");
-
-        // Generate the Excel file and trigger download
         XLSX.writeFile(wb, "boq-template.xlsx");
     };
 
     return (
         <div className="component-container">
-            <h2>4. BOQ/BOM (Bill of Quantities)</h2>
+            <h2 className="font-bold mb-2">4. BOQ/BOM (Bill of Quantities)</h2>
             <p className="section-description text-[#666] mb-2">
                 Add items or services required for this RFP. You can add items
                 individually or upload a bulk list.
             </p>
             <div className="card mb-4">
                 <div className="card-header font-bold">
-                    <h4>Add New Item</h4>
+                    <h4 className="mb-2">Add New Item</h4>
                 </div>
                 <div className="card-body">
                     <div className="row">
@@ -325,7 +319,7 @@ const BOQ = ({ data, onChange, errors }) => {
                         />
                     </div>
 
-                    <button className="btn btn-success" onClick={addItem}>
+                    <button className="button" onClick={addItem}>
                         <i className="fas fa-plus-circle"></i> Add Item
                     </button>
                 </div>
@@ -439,7 +433,7 @@ const BOQ = ({ data, onChange, errors }) => {
 
             <div className="btn-group">
                 <button
-                    className="btn btn-secondary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(3)")
@@ -449,7 +443,7 @@ const BOQ = ({ data, onChange, errors }) => {
                     Previous: Scope of Work
                 </button>
                 <button
-                    className="btn btn-primary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(5)")

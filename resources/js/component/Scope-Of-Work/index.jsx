@@ -70,7 +70,7 @@ const ScopeOfWork = ({ data, onChange, errors }) => {
 
     return (
         <div className="component-container">
-            <h2>3. Scope of Work</h2>
+            <h2 className="font-bold mb-2">3. Scope of Work</h2>
             <div className="card">
                 <div className="card-body">
                     <div className="space-y-4">
@@ -119,12 +119,12 @@ const ScopeOfWork = ({ data, onChange, errors }) => {
                                     }
                                     onKeyDown={handleDeliverableKeyDown}
                                     placeholder="Add a custom deliverable"
-                                    className="form-control flex-1"
+                                    className="form-control flex-1 "
                                 />
                                 <button
                                     type="button"
                                     onClick={handleAddDeliverable}
-                                    className="btn btn-primary"
+                                    className="button"
                                 >
                                     <span>Add</span>
                                 </button>
@@ -165,7 +165,7 @@ const ScopeOfWork = ({ data, onChange, errors }) => {
             {/* Navigation Buttons */}
             <div className="btn-group">
                 <button
-                    className="btn btn-secondary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(2)")
@@ -175,7 +175,7 @@ const ScopeOfWork = ({ data, onChange, errors }) => {
                     Previous: About the Requirement
                 </button>
                 <button
-                    className="btn btn-primary"
+                    className="next-btn"
                     onClick={() =>
                         document
                             .querySelector(".sidebar-nav li:nth-child(4)")
