@@ -275,7 +275,7 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
                                 </p>
                                 <div className="flex space-x-2 mb-2">
                                     <button
-                                        className="bg-[#494E53] text-white border border-gray-300 font-semibold px-4 py-2 rounded transition-colors duration-300 hover:bg-[#D3AC36] hover:text-white"
+                                        className="bg-[#494E53] text-white border border-gray-300 font-semibold px-4 py-2 hover:cursor-pointer rounded-4xl transition-colors duration-300 hover:bg-[#D3AC36] hover:text-white"
                                         onClick={() => {
                                             setShowDownload(true);
                                         }}
@@ -283,7 +283,7 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
                                         Yes
                                     </button>
                                     <button
-                                        className="bg-[#494E53] text-white border border-gray-300 font-semibold px-4 py-2 rounded transition-colors duration-300 hover:bg-[#D3AC36] hover:text-white"
+                                        className="bg-[#494E53] text-white border border-gray-300 font-semibold px-4 py-2 hover:cursor-pointer rounded-4xl transition-colors duration-300 hover:bg-[#D3AC36] hover:text-white"
                                         onClick={() => setShowDownload(false)}
                                     >
                                         No
@@ -349,7 +349,7 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
                 </button>
                 {sendMethod === "email" && (
                     <button
-                        className="btn btn-primary"
+                        className="btn-primary px-4 rounded-4xl hover:cursor-pointer"
                         onClick={handleSendClick}
                         disabled={isSubmitting}
                     >

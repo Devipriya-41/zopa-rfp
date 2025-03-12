@@ -7,7 +7,7 @@
     --dark-color: #343a40;
     --gray-color: #6c757d;
     --light-gray-color: #e9ecef;
-    --border-color: #dee2e6;
+    --border-color: #F1F2F7;
     --error-color: #dc3545;
     --light-yellow: #d4ac33;
 }
@@ -101,7 +101,6 @@ body {
 .preview-section h3 {
     margin-top: 0;
     padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-color);
     color: black;
     font-weight: 700;
 }
@@ -122,9 +121,16 @@ body {
     width: 100%;
     padding: 10px 12px;
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    background-color: var(--border-color);
+    border-radius: 4rem;
     font-size: 14px;
     transition: border-color 0.2s;
+}
+textarea.form-control{
+    border-radius: 1.5rem;
+}
+select.form-control{
+    padding-right: 20px;
 }
 
 .form-control:focus {
@@ -159,7 +165,9 @@ textarea.form-control {
     margin-bottom: 8px;
 }
 
-.checkbox-label input {
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
     margin-right: 10px;
 }
 
@@ -249,12 +257,17 @@ textarea.form-control {
 .button {
     background-color: var(--dark-color);
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 4rem;
     color: white;
     font-size: 15px;
     font-weight: 600;
     /* transform: translateY(-3px); */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.button:hover {
+    background-color: var(--light-yellow);
+    cursor: pointer;
 }
 
 /* Table Styling */
@@ -318,8 +331,8 @@ thead th {
     height: 300px;
     color: var(--gray-color);
     font-style: italic;
-    background-color: var(--light-gray-color);
-    border-radius: 5px;
+    background-color: var(--border-color);
+    border-radius: 2rem;
 }
 
 .boq-table {

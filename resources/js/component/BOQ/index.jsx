@@ -336,10 +336,10 @@ const BOQ = ({ data, onChange, errors }) => {
                 </p>
 
                 {/* Upload Section */}
-                <div className="flex flex-col items-center p-5 border-2 border-dashed border-gray-400 rounded-lg bg-gray-50 hover:bg-gray-100 transition-all duration-200">
+                <div className="flex flex-col items-center p-5 border-2 border-dashed border-gray-400 rounded-3xl bg-gray-50 hover:bg-gray-100 transition-all duration-200">
                     <label
                         htmlFor="bulkUpload"
-                        className="cursor-pointer flex items-center gap-2 px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-md transition-all duration-200"
+                        className="cursor-pointer flex items-center gap-2 px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-4xl shadow-md transition-all duration-200"
                     >
                         <FaUpload className="w-5 h-5" />
                         {uploadedFile ? uploadedFile : "Choose File"}
@@ -370,24 +370,24 @@ const BOQ = ({ data, onChange, errors }) => {
                 )}
 
                 {/* Download Template Section */}
-                <div className="mt-6 p-4 bg-gray-100 rounded-lg shadow-md border border-gray-300">
-                    <p className="text-sm text-gray-700">
-                        Download a sample template file to see the required
-                        format.
-                    </p>
-                    <div className="mt-2 flex justify-center">
+                <div className="mt-6 p-4 bg-gray-100 rounded-3xl shadow-md border border-gray-300">
+                    <div className="mb-2 flex justify-center">
                         <a
                             href="#"
                             onClick={(e) => {
                                 e.preventDefault();
                                 downloadSampleExcel();
                             }}
-                            className="inline-flex items-center px-5 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg shadow-md transition-all duration-200"
+                            className="inline-flex items-center px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium  rounded-4xl shadow-md transition-all duration-200"
                         >
                             <FaFileDownload className="w-5 h-5 mr-2" /> Download
                             Template
                         </a>
                     </div>
+                    <p className="text-sm text-center text-gray-700">
+                        Download a sample template file to see the required
+                        format.
+                    </p>
                 </div>
             </div>
 
