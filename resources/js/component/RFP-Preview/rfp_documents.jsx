@@ -90,6 +90,8 @@ const styles = StyleSheet.create({
     footerText: {
         textAlign: "center",
         width: "80%",
+        fontSize: 10,
+        marginVertical: 2,
     },
     headerLogo: {
         width: 60,
@@ -115,14 +117,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         gap: 3, // Spacing between elements
     },
-    footerText: {
-        fontSize: 10,
-        marginVertical: 2,
-    },
-    page: {
-        flexDirection: "column",
-        padding: 20,
-    },
+
     content: {
         flexGrow: 1,
     },
