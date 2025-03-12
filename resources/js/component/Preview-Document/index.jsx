@@ -136,15 +136,15 @@ const PreviewDocument = ({ data }) => {
                     <h3>6. Financials</h3>
 
                     {data.financials.budgetType && (
-                        <p>
-                            <strong>Budget Type:</strong>
+                        <p className="capitalize">
+                            <strong>Budget Type:&nbsp; </strong>
                             {data.financials.budgetType}
                         </p>
                     )}
 
                     {data.financials.budgetMin && (
                         <p>
-                            <strong>Minimum Budget:</strong>
+                            <strong>Minimum Budget:&nbsp; </strong>
                             {data.financials.currency}{" "}
                             {data.financials.budgetMin}
                         </p>
@@ -152,7 +152,7 @@ const PreviewDocument = ({ data }) => {
 
                     {data.financials.budgetMax && (
                         <p>
-                            <strong>Maximum Budget:</strong>{" "}
+                            <strong>Maximum Budget:&nbsp; </strong>{" "}
                             {data.financials.currency}{" "}
                             {data.financials.budgetMax}
                         </p>
@@ -160,35 +160,37 @@ const PreviewDocument = ({ data }) => {
 
                     {data.financials.currency && (
                         <p>
-                            <strong>Currency:</strong>{" "}
+                            <strong>Currency:&nbsp; </strong>{" "}
                             {data.financials.currency}
                         </p>
                     )}
 
                     {data.financials.financialNotes && (
-                        <p>
-                            <strong>Financial Notes:</strong>{" "}
+                        <p className="capitalize">
+                            <strong>Financial Notes:&nbsp; </strong>{" "}
                             {data.financials.financialNotes}
                         </p>
                     )}
 
                     {data.financials.paymentTerms && (
-                        <p>
-                            <strong>Payment Terms:</strong>{" "}
+                        <p className="capitalize">
+                            <strong>Payment Terms:&nbsp; </strong>{" "}
                             {data.financials.paymentTerms}
                         </p>
                     )}
 
                     {data.financials.pbgAmount && (
                         <p>
-                            <strong>PBG (Performance Bank Guarantee):</strong>{" "}
+                            <strong>
+                                PBG (Performance Bank Guarantee):&nbsp;{" "}
+                            </strong>{" "}
                             {data.financials.currency} &nbsp;
                             {data.financials.pbgAmount}
                         </p>
                     )}
                     {data.financials.pricingModel && (
-                        <p>
-                            <strong>Pricing Model:</strong>{" "}
+                        <p className="capitalize">
+                            <strong>Pricing Model:&nbsp; </strong>{" "}
                             {data.financials.pricingModel}
                         </p>
                     )}

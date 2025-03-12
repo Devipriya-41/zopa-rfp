@@ -21,9 +21,6 @@ const Contact = ({ data, onChange, errors }) => {
         <div className="component-container">
             <h2 className="font-bold mb-2">10. Contact Information</h2>
             <div className="card">
-                {/* <div className="card-header font-bold mb-3">
-                    <h4>Primary Contact Details</h4>
-                </div> */}
                 <div className="card-body">
                     <div className="space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

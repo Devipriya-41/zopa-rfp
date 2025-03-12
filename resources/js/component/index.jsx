@@ -88,6 +88,7 @@ const RFPCreator = () => {
         });
     };
 
+    console.log(formData, "formData");
     const validateForm = () => {
         const newErrors = {};
         // Company validation
@@ -105,16 +106,16 @@ const RFPCreator = () => {
             newErrors.purpose = "Purpose is required";
 
         // Contact validation
-        if (!formData.contact.name)
+        if (!formData.contact.contactName)
             newErrors.contactName = "Contact name is required";
-        if (!formData.contact.email)
+        if (!formData.contact.contactEmail)
             newErrors.contactEmail = "Email is required";
         if (
-            formData.contact.email &&
-            !/\S+@\S+\.\S+/.test(formData.contact.email)
+            formData.contact.contactEmail &&
+            !/\S+@\S+\.\S+/.test(formData.contact.contactEmail)
         )
             newErrors.contactEmail = "Email is invalid";
-        if (!formData.contact.phone)
+        if (!formData.contact.contactPhone)
             newErrors.contactPhone = "Phone number is required";
 
         setErrors(newErrors);

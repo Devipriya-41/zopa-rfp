@@ -236,7 +236,7 @@ textarea.form-control {
 }
 .btn-group .next-btn {
     background-color: var(--light-yellow);
-    padding: 10px 20px;
+    padding: 10px 10px;
     border-radius: 8px;
     color: white;
     font-size: 15px;

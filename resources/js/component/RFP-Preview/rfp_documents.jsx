@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     logo: {
-        width: 100,
+        width: 50,
         height: "auto",
         marginBottom: 10,
         alignSelf: "center",
@@ -139,9 +139,6 @@ const RFPDocument = ({ data, logoBase64 }) => (
                         <Image src={logo} style={styles.logo} />
                     )}
                 </View>
-
-                {/* <Text>{data.requirement.projectName || "RFP Document"}</Text> */}
-                {/* <Text></Text> */}
             </View>
             <View style={styles.section}>
                 <Text style={styles.header}>
