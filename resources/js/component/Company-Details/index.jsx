@@ -30,7 +30,7 @@ const CompanyIntroduction = ({ data, onChange, errors }) => {
                     }`}
                     value={data.name}
                     onChange={handleChange}
-                    placeholder="e.g., Acme Corporation"
+                    placeholder="e.g., ZOPA Procure Efficiently"
                 />
                 {errors.companyName && (
                     <div className="error-message">{errors.companyName}</div>
@@ -69,7 +69,7 @@ const CompanyIntroduction = ({ data, onChange, errors }) => {
                     }`}
                     value={data.businessType}
                     onChange={handleChange}
-                    placeholder="e.g., Software Development, Manufacturing, Consulting"
+                    placeholder="e.g., Software Development, Procurement, Manufacturing, Consulting"
                 />
                 {errors.businessType && (
                     <div className="error-message">{errors.businessType}</div>
