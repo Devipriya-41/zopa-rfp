@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     header: {
-        fontSize: 24,
+        fontSize: 18,
         textAlign: "center",
         marginBottom: 20,
         color: "#0056b3",
     },
     subheader: {
-        fontSize: 18,
+        fontSize: 16,
         marginBottom: 10,
         borderBottom: "1 solid #cccccc",
         paddingBottom: 5,

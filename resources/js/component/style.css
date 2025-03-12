@@ -7,7 +7,7 @@
     --dark-color: #343a40;
     --gray-color: #6c757d;
     --light-gray-color: #e9ecef;
-    --border-color: #F1F2F7;
+    --border-color: #f1f2f7;
     --error-color: #dc3545;
     --light-yellow: #d4ac33;
 }
@@ -126,10 +126,10 @@ body {
     font-size: 14px;
     transition: border-color 0.2s;
 }
-textarea.form-control{
+textarea.form-control {
     border-radius: 1.5rem;
 }
-select.form-control{
+select.form-control {
     padding-right: 20px;
 }
 
@@ -236,7 +236,7 @@ input[type="checkbox"] {
     padding: 10px 10px;
     border-radius: 4rem;
     color: white;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 400;
 }
 
@@ -245,9 +245,10 @@ input[type="checkbox"] {
     border-radius: 4rem;
     color: white;
     font-size: 15px;
-    transform: translateY(-3px);
+    /* transform: translateY(-3px); */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     cursor: pointer;
+    font-size: 13px;
 }
 
 .button {
