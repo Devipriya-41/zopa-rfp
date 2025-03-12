@@ -265,7 +265,7 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
                 </div>
             )}
 
-            <div className="card mt-4">
+            <div className="card mt-10">
                 <div className="card-body">
                     <div className="form-group">
                         <div className="send-method-options">

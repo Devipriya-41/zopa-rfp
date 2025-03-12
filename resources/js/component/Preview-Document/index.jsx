@@ -11,7 +11,7 @@ const PreviewDocument = ({ data }) => {
     }
 
     return (
-        <div className="document-preview">
+        <div className="document-preview min-h-[89vh] max-h-[89vh] overflow-y-auto">
             <div className="document-header">
                 <img
                     src={

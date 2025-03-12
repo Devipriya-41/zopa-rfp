@@ -273,7 +273,7 @@ const RFPCreator = () => {
             </div>
 
             <div className="rfp-content">
-                <div className="form-section overflow-y-auto max-h-[640px] p-4 border border-gray-300 rounded-lg bg-white shadow-md">
+                <div className="form-section overflow-y-auto max-h-dvh p-4 border border-gray-300 bg-white">
                     {activeSection === "company" && (
                         <CompanyIntroduction
                             data={formData.company}
@@ -402,10 +402,7 @@ const RFPCreator = () => {
 
                 <div className="preview-section">
                     <h3 className="text-lg font-semibold ">Live Preview</h3>
-
-                    <div className="preview-document overflow-y-auto max-h-[550px] p-4 border border-gray-300 rounded-lg bg-gray-100 shadow-md">
-                        <PreviewDocument data={formData} />
-                    </div>
+                    <PreviewDocument data={formData} />
                 </div>
             </div>
 

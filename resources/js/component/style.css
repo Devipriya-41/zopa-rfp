@@ -13,7 +13,7 @@
 }
 
 body {
-    font-family: "Poppins", "Segoe UI", sans-serif;
+    font-family: "Raleway", "Segoe UI", sans-serif;
     background-color: #f5f7fa;
     margin: 0;
     padding: 0;
@@ -75,17 +75,6 @@ body {
 
 .sidebar-nav li.active {
     background-color: var(--light-yellow);
-    font-weight: 600;
-}
-
-.sidebar-nav li.active::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 4px;
-    background-color: var(--accent-color);
 }
 
 /* Main Content Styling */
@@ -237,7 +226,7 @@ textarea.form-control {
 .btn-group .next-btn {
     background-color: var(--light-yellow);
     padding: 10px 10px;
-    border-radius: 8px;
+    border-radius: 4rem;
     color: white;
     font-size: 15px;
 }
@@ -249,13 +238,12 @@ textarea.form-control {
 
 .btn-group .next-btn:hover {
     background-color: var(--dark-color);
-    padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 4rem;
     color: white;
     font-size: 15px;
-    font-weight: 600;
     transform: translateY(-3px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
 }
 
 .button {
