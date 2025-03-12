@@ -4,8 +4,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RFPDocument from "./rfp_documents";
 import TermsAndConditionsPopup from "./terms_condition";
-import CompanyIntroduction from "../Company-Details/index";
-// import { useNavigate } from "react-router-dom";
 
 const Preview = ({ data, onSubmit, isSubmitting }) => {
     const [sendTo, setSendTo] = useState("");
@@ -18,7 +16,6 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
     const [showTermsPopup, setShowTermsPopup] = useState(false);
     const [termsAccepted, setTermsAccepted] = useState(false);
     const safeDataRef = useRef(null);
-    // const navigate = useNavigate();
 
     const prepareLogoForPdf = useCallback((logoFile) => {
         return new Promise((resolve) => {
@@ -43,7 +40,6 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
         }
     }, [data.contact?.logo, prepareLogoForPdf]);
 
-    // Safeguard against undefined data
     const safeData = {
         company: data.company || {},
         requirement: data.requirement || {},
@@ -224,9 +220,6 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
             if (sidebarItem) {
                 sidebarItem.click();
             }
-            // if (onNavigateToSection) {
-            //     onNavigateToSection(sectionName, index);
-            // }
         }
     };
 

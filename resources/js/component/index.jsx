@@ -16,7 +16,6 @@ import PreviewDocument from "./Preview-Document/index";
 import "./style.css";
 import { ToastContainer, toast } from "react-toastify";
 import logo from "../../../public/assets/zopa-logo-light.svg";
-// import Image from "next/image";
 
 const RFPCreator = () => {
     const [activeSection, setActiveSection] = useState("company");

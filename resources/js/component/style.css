@@ -236,12 +236,8 @@ input[type="checkbox"] {
     padding: 10px 10px;
     border-radius: 4rem;
     color: white;
-    font-size: 15px;
-}
-
-.btn-group .next-btn {
-    transition: background-color 0.3s ease, transform 0.3s ease,
-        box-shadow 0.3s ease;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .btn-group .next-btn:hover {
