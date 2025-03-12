@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RFPDocument from "./rfp_documents";
 import TermsAndConditionsPopup from "./terms_condition";
+import CompanyIntroduction from "../Company-Details/index";
+// import { useNavigate } from "react-router-dom";
 
 const Preview = ({ data, onSubmit, isSubmitting }) => {
     const [sendTo, setSendTo] = useState("");
@@ -16,6 +18,7 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
     const [showTermsPopup, setShowTermsPopup] = useState(false);
     const [termsAccepted, setTermsAccepted] = useState(false);
     const safeDataRef = useRef(null);
+    // const navigate = useNavigate();
 
     const prepareLogoForPdf = useCallback((logoFile) => {
         return new Promise((resolve) => {
@@ -62,32 +65,6 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
         const re = /\S+@\S+\.\S+/;
         return re.test(email);
     }, []);
-
-    // const handleSendClick = useCallback(() => {
-    //     if (!formComplete) {
-    //         toast.error(
-    //             "Please fill in all required sections before submitting."
-    //         );
-    //         return;
-    //     }
-
-    //     if (sendMethod === "email") {
-    //         if (!sendTo) {
-    //             setEmailError("Email is required");
-    //             return;
-    //         }
-
-    //         if (!validateEmail(sendTo)) {
-    //             setEmailError("Please enter a valid email address");
-    //             return;
-    //         }
-
-    //         setEmailError("");
-    //     }
-
-    //     // Show terms and conditions popup instead of submitting immediately
-    //     setShowTermsPopup(true);
-    // }, [formComplete, sendMethod, sendTo, validateEmail]);
 
     const handleSendClick = useCallback(() => {
         if (!formComplete) {
@@ -222,6 +199,37 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
         setFormComplete(incomplete.length === 0);
     }, [getIncompleteSections]);
 
+    const handleNavigate = (sectionName) => {
+        const sectionIndices = {
+            "1. Company Introduction": 0,
+            "2. About the Requirement": 1,
+            "3. Scope of Work": 2,
+            "4. BOQ/BOM": 3,
+            "5. Evaluation Criteria": 4,
+            "6. Financials": 5,
+            "7. General Terms & Conditions": 6,
+            "8. Special Terms & Conditions": 7,
+            "9. Documents to Share": 8,
+            "10. Contact": 9,
+            "11. Add Vendors": 10,
+            "12. RFP Start and End Date": 11,
+        };
+
+        const index = sectionIndices[sectionName];
+        if (index !== undefined) {
+            const sidebarItem = document.querySelector(
+                `.sidebar-nav li:nth-child(${index + 1})`
+            );
+
+            if (sidebarItem) {
+                sidebarItem.click();
+            }
+            // if (onNavigateToSection) {
+            //     onNavigateToSection(sectionName, index);
+            // }
+        }
+    };
+
     return (
         <div className="component-container">
             <h2 className="font-bold mb-4">Preview & Submit</h2>
@@ -239,13 +247,14 @@ const Preview = ({ data, onSubmit, isSubmitting }) => {
                     </div>
                     <p className="text-yellow-800 mb-2">
                         The following sections are incomplete. Please provide
-                        the required information
+                        the required information.
                     </p>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                         {incompleteSections.map((sectionName, index) => (
                             <div
                                 key={index}
-                                className="p-3 bg-white border border-yellow-300 rounded-md shadow-sm"
+                                onClick={() => handleNavigate(sectionName)}
+                                className="p-3 bg-white border border-yellow-300 rounded-md shadow-sm cursor-pointer hover:bg-yellow-200 transition-colors duration-300"
                             >
                                 <span className="text-yellow-900 font-medium">
                                     {sectionName}

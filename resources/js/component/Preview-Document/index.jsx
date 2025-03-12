@@ -2,7 +2,6 @@ import React from "react";
 import logo from "../../../../public/assets/zopa-logo.svg";
 
 const PreviewDocument = ({ data }) => {
-    console.log(data?.contact?.logo, "ddadda");
     if (!data.company.name) {
         return (
             <div className="empty-preview">
